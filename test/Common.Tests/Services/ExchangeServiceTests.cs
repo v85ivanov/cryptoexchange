@@ -36,7 +36,26 @@ namespace Common.Tests.Services
 			result.Should().NotBeEmpty();
 			result.Should().HaveCount(1);
 			result.ForEach(x => x.Should().BeOfType<Exchange>());
+		}
 
+		[Test]
+		public void ReadExchangeFiles_NoFilesFound_ShouldReturnEmptyList()
+		{
+			_fileProvider.GetFiles(Arg.Any<string>()).Returns([]);
+
+			var result = _systemUnderTest.GetDataFromFiles("directoryPath").ToList();
+			result.Should().BeEmpty();
+		}
+
+		[Test]
+		public void ReadExchangeFiles_UnableToLoadFile_ShouldReturnEmptyList()
+		{
+			var fileInfo = new FileInfo("fileName");
+			_fileProvider.GetFiles(Arg.Any<string>()).Returns([fileInfo]);
+			_exchangeFileLoader.GetData(fileInfo).Returns((Exchange)null);
+
+			var result = _systemUnderTest.GetDataFromFiles("directoryPath").ToList();
+			result.Should().BeEmpty();
 		}
 	}
 }
