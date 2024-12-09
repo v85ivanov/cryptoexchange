@@ -15,11 +15,11 @@ namespace Common.Tests.Services
 			{
 				OrderBook = new OrderBook
 				{
-					Asks = new List<Order>
+					Asks = new List<OrderWrapper>
 					{
 						new(), new(), new()
 					},
-					Bids = new List<Order>
+					Bids = new List<OrderWrapper>
 					{
 						new(), new()
 					}
@@ -30,11 +30,11 @@ namespace Common.Tests.Services
 			{
 				OrderBook = new OrderBook
 				{
-					Asks = new List<Order>
+					Asks = new List<OrderWrapper>
 					{
 						new(), new(), new()
 					},
-					Bids = new List<Order>
+					Bids = new List<OrderWrapper>
 					{
 						new(), new()
 					}

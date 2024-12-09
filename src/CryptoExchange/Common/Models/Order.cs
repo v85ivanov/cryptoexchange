@@ -1,4 +1,5 @@
 ﻿using Common.Enums;
+using System.Text.Json.Serialization;
 
 namespace Common.Models
 {
@@ -11,6 +12,7 @@ namespace Common.Models
 
 		public DateTime Time { get; set; }
 
+		[JsonConverter(typeof(JsonStringEnumConverter))]
 		public OrderType Type { get; set; }
 
 		public string Kind { get; set; }

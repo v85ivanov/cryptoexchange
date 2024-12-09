@@ -10,7 +10,7 @@ namespace Common.Services
 
 			foreach (var exchange in exchanges)
 			{
-				result.AddRange(exchange.OrderBook.Bids);
+				result.AddRange(exchange.OrderBook.Bids.Select(x => x.Order));
 			}
 
 			return result;
@@ -22,7 +22,7 @@ namespace Common.Services
 
 			foreach (var exchange in exchanges)
 			{
-				result.AddRange(exchange.OrderBook.Asks);
+				result.AddRange(exchange.OrderBook.Asks.Select(x => x.Order));
 			}
 
 			return result;
