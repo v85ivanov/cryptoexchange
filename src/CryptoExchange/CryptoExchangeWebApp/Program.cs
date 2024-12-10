@@ -20,6 +20,11 @@ namespace CryptoExchangeWebApp
 
 			app.UseRouting();
 
+			app.MapControllerRoute(
+				name: "default",
+				pattern: "{controller=Trading}/{action=Buy}/{numberOfBtc?}");
+
+
 			app.UseAuthorization();
 
 			app.MapRazorPages();

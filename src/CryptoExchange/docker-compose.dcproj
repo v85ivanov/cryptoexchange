@@ -5,7 +5,7 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>14376ca2-f77b-48a6-aaf2-33feadcded0b</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/</DockerServiceUrl>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/Trading</DockerServiceUrl>
     <DockerServiceName>cryptoexchange</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
