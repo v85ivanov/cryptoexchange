@@ -1,0 +1,10 @@
+version: '1.0'
+name: cryptoexchange
+
+services:
+                
+    cryptoexchange:
+        image: cryptoexchange
+        build:
+            context: .
+            dockerfile: CryptoExchangeWebApp/Dockerfile

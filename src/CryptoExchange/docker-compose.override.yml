@@ -1,0 +1,9 @@
+version: '1.0'
+
+services:
+
+  cryptoexchange:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5555:5000"
