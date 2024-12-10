@@ -18,6 +18,11 @@ namespace CryptoExchangeWebApp.Controllers
 		ITradingService tradingService)
 		: Controller
 	{
+		/// <summary>
+		/// Buys BTC.
+		/// </summary>
+		/// <param name="numberOfBtc"></param>
+		/// <returns></returns>
 		[HttpGet]
 		public IActionResult Buy(int numberOfBtc)
 		{
