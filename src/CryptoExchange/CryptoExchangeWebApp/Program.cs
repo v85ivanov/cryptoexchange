@@ -8,6 +8,7 @@ namespace CryptoExchangeWebApp
 
 			// Add services to the container.
 			builder.Services.AddRazorPages();
+			builder.Services.AddCommonServices();
 
 			var app = builder.Build();
 

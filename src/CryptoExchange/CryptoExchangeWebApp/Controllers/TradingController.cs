@@ -1,28 +1,35 @@
-﻿using CryptoExchangeWebApp.Configuration;
+﻿using Common.Services;
+using CryptoExchangeWebApp.Configuration;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CryptoExchangeWebApp.Controllers
 {
-	public class TradingController : Controller
+	/// <summary>
+	/// Trading controller
+	/// </summary>
+	/// <param name="logger"></param>
+	/// <param name="config"></param>
+	/// <param name="exchangeService"></param>
+	/// <param name="tradingService"></param>
+	public class TradingController(
+		ILogger<TradingController> logger,
+		IConfiguration config,
+		IExchangeService exchangeService,
+		ITradingService tradingService)
+		: Controller
 	{
-		private readonly ILogger<TradingController> _logger;
-		private readonly IConfiguration _config;
-
-		public TradingController(ILogger<TradingController> logger, IConfiguration config)
-		{
-			_logger = logger;
-			_config = config;
-		}
-
 		[HttpGet]
 		public IActionResult Buy(int numberOfBtc)
 		{
-			var settingsSection = _config.GetSection("Settings");
+			logger.LogInformation("Buying {NumberOfBtc} BTC", numberOfBtc);
+
+			var settingsSection = config.GetSection("Settings");
 			var settings = settingsSection.Get<Settings>();
 
+			var exchangeData =  exchangeService.GetDataFromFiles(settings.Source);
+			var result = tradingService.Buy(exchangeData, numberOfBtc);
 
-			_logger.LogInformation("Buying {NumberOfBtc} BTC", numberOfBtc);
-			return Ok();
+			return Json(result);
 		}
 	}
 }
