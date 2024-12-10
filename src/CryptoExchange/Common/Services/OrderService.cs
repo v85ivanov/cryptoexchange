@@ -2,6 +2,9 @@
 
 namespace Common.Services
 {
+	/// <summary>
+	/// Implementation of <see cref="IOrderService"/>.
+	/// </summary>
 	internal class OrderService : IOrderService
 	{
 		public ICollection<Order> GetAllBuyOrders(ICollection<Exchange> exchanges)

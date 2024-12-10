@@ -3,6 +3,11 @@ using Microsoft.Extensions.Logging;
 
 namespace Common.Services
 {
+	/// <summary>
+	/// Implementation of <see cref="ITradingService"/>.
+	/// </summary>
+	/// <param name="orderService"></param>
+	/// <param name="logger"></param>
 	internal class TradingService(IOrderService orderService, ILogger<TradingService> logger)
 		: ITradingService
 	{

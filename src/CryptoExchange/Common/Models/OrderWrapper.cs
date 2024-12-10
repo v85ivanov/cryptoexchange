@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Common.Models
+﻿namespace Common.Models
 {
+	/// <summary>
+	/// Represents wrapper object for order.
+	/// </summary>
 	public class OrderWrapper
 	{
 		public Order Order { get; set; }

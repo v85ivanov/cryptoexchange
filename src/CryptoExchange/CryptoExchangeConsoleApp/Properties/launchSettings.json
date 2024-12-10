@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CryptoExchangeConsoleApp": {
+      "commandName": "Project",
+      "commandLineArgs": "--source \"C:\\Temp\\exchanges\""
+    }
+  }
+}
