@@ -1,7 +1,7 @@
-﻿using Common.Models;
+﻿using CryptoExchange.Common.Models;
 using Microsoft.Extensions.Logging;
 
-namespace Common.Services
+namespace CryptoExchange.Common.Services
 {
 	/// <summary>
 	/// Implementation of <see cref="ITradingService"/>.

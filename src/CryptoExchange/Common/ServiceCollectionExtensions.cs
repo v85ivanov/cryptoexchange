@@ -1,6 +1,6 @@
-﻿using Common.Mappers;
-using Common.Providers;
-using Common.Services;
+﻿using CryptoExchange.Common.Mappers;
+using CryptoExchange.Common.Providers;
+using CryptoExchange.Common.Services;
 
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection;

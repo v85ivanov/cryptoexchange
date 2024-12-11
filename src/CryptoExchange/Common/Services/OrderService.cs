@@ -1,6 +1,6 @@
-﻿using Common.Models;
+﻿using CryptoExchange.Common.Models;
 
-namespace Common.Services
+namespace CryptoExchange.Common.Services
 {
 	/// <summary>
 	/// Implementation of <see cref="IOrderService"/>.

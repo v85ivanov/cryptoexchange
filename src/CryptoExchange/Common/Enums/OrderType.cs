@@ -1,4 +1,4 @@
-﻿namespace Common.Enums
+﻿namespace CryptoExchange.Common.Enums
 {
 	/// <summary>
 	/// Represents the order type.

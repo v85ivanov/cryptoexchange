@@ -1,11 +1,11 @@
-﻿using Common.Models;
-using Common.Services;
+﻿using CryptoExchange.Common.Models;
+using CryptoExchange.Common.Services;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Common.Tests.Services
+namespace CryptoExchange.Common.Tests.Services
 {
 	public class TradingServiceTests
 	{

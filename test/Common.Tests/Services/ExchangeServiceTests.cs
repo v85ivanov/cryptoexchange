@@ -1,13 +1,13 @@
-﻿using Common.Mappers;
-using Common.Models;
-using Common.Providers;
-using Common.Services;
+﻿using CryptoExchange.Common.Mappers;
+using CryptoExchange.Common.Models;
+using CryptoExchange.Common.Providers;
+using CryptoExchange.Common.Services;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Common.Tests.Services
+namespace CryptoExchange.Common.Tests.Services
 {
 	public class ExchangeServiceTests
 	{

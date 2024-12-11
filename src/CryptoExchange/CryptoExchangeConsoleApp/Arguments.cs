@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace CryptoExchangeConsoleApp;
+namespace CryptoExchange.ConsoleApp;
 
 /// <summary>
 /// Represents the arguments model.

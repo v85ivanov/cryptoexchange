@@ -1,4 +1,4 @@
-﻿namespace Common.Providers;
+﻿namespace CryptoExchange.Common.Providers;
 
 /// <summary>
 /// Implementation for <see cref="IFileProvider"/>.

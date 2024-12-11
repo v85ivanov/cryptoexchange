@@ -1,4 +1,4 @@
-﻿namespace Common.Models
+﻿namespace CryptoExchange.Common.Models
 {
 	/// <summary>
 	/// Represents wrapper object for order.

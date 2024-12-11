@@ -1,4 +1,4 @@
-﻿namespace CryptoExchangeWebApp.Configuration
+﻿namespace CryptoExchange.WebApp.Configuration
 {
 	/// <summary>
 	/// Represents the settings model.

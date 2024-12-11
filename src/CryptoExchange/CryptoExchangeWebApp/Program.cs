@@ -1,4 +1,4 @@
-namespace CryptoExchangeWebApp
+namespace CryptoExchange.WebApp
 {
 	public class Program
 	{

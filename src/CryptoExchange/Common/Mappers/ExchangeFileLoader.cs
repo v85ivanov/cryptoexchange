@@ -1,8 +1,8 @@
-﻿using Common.Models;
-using System.Text.Json;
+﻿using System.Text.Json;
+using CryptoExchange.Common.Models;
 using Microsoft.Extensions.Logging;
 
-namespace Common.Mappers
+namespace CryptoExchange.Common.Mappers
 {
 	/// <summary>
 	/// Implementation of <see cref="IExchangeFileLoader"/>.

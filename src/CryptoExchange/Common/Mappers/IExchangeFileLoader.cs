@@ -1,6 +1,6 @@
-﻿using Common.Models;
+﻿using CryptoExchange.Common.Models;
 
-namespace Common.Mappers
+namespace CryptoExchange.Common.Mappers
 {
 	/// <summary>
 	/// Represents exchange file mapper.

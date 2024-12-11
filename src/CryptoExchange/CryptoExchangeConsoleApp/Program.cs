@@ -1,11 +1,11 @@
 ﻿using CommandLine;
+using CryptoExchange.Common.Models;
+using CryptoExchange.Common.Services;
 using Microsoft.Extensions.DependencyInjection;
-using Common.Models;
-using Common.Services;
 using Microsoft.Extensions.Logging;
 using static System.Text.Json.JsonSerializer;
 
-namespace CryptoExchangeConsoleApp;
+namespace CryptoExchange.ConsoleApp;
 
 public class Program
 {

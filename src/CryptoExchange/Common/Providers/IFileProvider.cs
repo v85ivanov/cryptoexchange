@@ -1,4 +1,4 @@
-﻿namespace Common.Providers
+﻿namespace CryptoExchange.Common.Providers
 {
 	/// <summary>
 	/// Represents a file provider.

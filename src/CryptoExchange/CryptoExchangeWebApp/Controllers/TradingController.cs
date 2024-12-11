@@ -1,8 +1,8 @@
-﻿using Common.Services;
-using CryptoExchangeWebApp.Configuration;
+﻿using CryptoExchange.Common.Services;
+using CryptoExchange.WebApp.Configuration;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CryptoExchangeWebApp.Controllers
+namespace CryptoExchange.WebApp.Controllers
 {
 	/// <summary>
 	/// Trading controller

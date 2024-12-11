@@ -1,7 +1,7 @@
-﻿using Common.Enums;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
+using CryptoExchange.Common.Enums;
 
-namespace Common.Models
+namespace CryptoExchange.Common.Models
 {
 	/// <summary>
 	/// Represents the order model.
