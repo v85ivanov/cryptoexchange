@@ -16,7 +16,7 @@ namespace CryptoExchangeWebApp.Controllers
 		IConfiguration config,
 		IExchangeService exchangeService,
 		ITradingService tradingService)
-		: Controller
+		: ControllerBase
 	{
 		/// <summary>
 		/// Buys BTC.
@@ -34,7 +34,7 @@ namespace CryptoExchangeWebApp.Controllers
 			var exchangeData =  exchangeService.GetDataFromFiles(settings?.Source);
 			var result = tradingService.Buy(exchangeData, numberOfBtc);
 
-			return Json(result);
+			return Ok(result);
 		}
 	}
 }
