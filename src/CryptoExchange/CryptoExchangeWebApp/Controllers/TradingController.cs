@@ -34,5 +34,16 @@ namespace CryptoExchange.WebApp.Controllers
 
 			return Ok(result);
 		}
+
+		[HttpGet]
+		public IActionResult Sell(int numberOfBtc)
+		{
+			logger.LogInformation("Selling {NumberOfBtc} BTC", numberOfBtc);
+
+			var exchangeData = exchangeService.GetDataFromFiles(settings.Value.Source);
+			var result = tradingService.Buy(exchangeData, numberOfBtc);
+
+			return Ok(result);
+		}
 	}
 }

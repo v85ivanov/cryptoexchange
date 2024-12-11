@@ -18,7 +18,7 @@ namespace CryptoExchange.Common.Services
 				return new List<Order>();
 			}
 			logger.LogInformation("Buying {NumberOfBtc} BTC", numberOfBtc);
-			var sortedOrders = orderService.GetAllBuyOrders(exchangeData).OrderBy(x => x.Price);
+			var sortedOrders = orderService.GetAllSellOrders(exchangeData).OrderBy(x => x.Price);
 			return GetRequiredOrders(sortedOrders, numberOfBtc);
 		}
 
@@ -30,7 +30,7 @@ namespace CryptoExchange.Common.Services
 			}
 
 			logger.LogInformation("Selling {NumberOfBtc} BTC", numberOfBtc);
-			var sortedOrders = orderService.GetAllSellOrders(exchangeData).OrderByDescending(x => x.Price);
+			var sortedOrders = orderService.GetAllBuyOrders(exchangeData).OrderByDescending(x => x.Price);
 			return GetRequiredOrders(sortedOrders, numberOfBtc);
 
 		}

@@ -48,7 +48,7 @@ namespace CryptoExchange.Common.Tests.Services
 					Price = 50001
 				}
 			};
-			_orderService.GetAllBuyOrders(data).Returns(orderList);
+			_orderService.GetAllSellOrders(data).Returns(orderList);
 
 			var result = _systemUnderTest.Buy(data, 1).ToList();
 			result.Should().NotBeEmpty();
@@ -93,7 +93,7 @@ namespace CryptoExchange.Common.Tests.Services
 					Price = 50001
 				}
 			};
-			_orderService.GetAllSellOrders(data).Returns(orderList);
+			_orderService.GetAllBuyOrders(data).Returns(orderList);
 
 			var result = _systemUnderTest.Sell(data, 1).ToList();
 			result.Should().NotBeEmpty();
