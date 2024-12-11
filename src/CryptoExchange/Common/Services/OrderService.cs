@@ -7,28 +7,24 @@ namespace CryptoExchange.Common.Services
 	/// </summary>
 	internal class OrderService : IOrderService
 	{
-		public ICollection<Order> GetAllBuyOrders(ICollection<Exchange> exchanges)
+		public Dictionary<ExchangeAvailableFundWrapper, IOrderedEnumerable<Order>> GetAllBuyOrders(ICollection<Exchange> exchanges)
 		{
-			var result = new List<Order>();
-
-			foreach (var exchange in exchanges)
-			{
-				result.AddRange(exchange.OrderBook.Bids.Select(x => x.Order));
-			}
-
-			return result;
+			return exchanges.ToDictionary(exchange => new ExchangeAvailableFundWrapper
+				{
+					ExchangeId = exchange.Id,
+					AvailableCrypto = exchange.AvailableFunds.Crypto
+				},
+				exchange => exchange.OrderBook.Bids.Select(x => x.Order).OrderByDescending(x => x.Price));
 		}
 
-		public ICollection<Order> GetAllSellOrders(ICollection<Exchange> exchanges)
+		public Dictionary<ExchangeAvailableFundWrapper, IOrderedEnumerable<Order>> GetAllSellOrders(ICollection<Exchange> exchanges)
 		{
-			var result = new List<Order>();
-
-			foreach (var exchange in exchanges)
-			{
-				result.AddRange(exchange.OrderBook.Asks.Select(x => x.Order));
-			}
-
-			return result;
+			return exchanges.ToDictionary(exchange => new ExchangeAvailableFundWrapper
+				{
+					ExchangeId = exchange.Id,
+					AvailableCrypto = exchange.AvailableFunds.Crypto
+				},
+				exchange => exchange.OrderBook.Asks.Select(x => x.Order).OrderBy(x => x.Price));
 		}
 	}
 }

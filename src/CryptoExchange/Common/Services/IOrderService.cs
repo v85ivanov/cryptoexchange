@@ -12,13 +12,13 @@ namespace CryptoExchange.Common.Services
 		/// </summary>
 		/// <param name="exchanges"></param>
 		/// <returns></returns>
-		ICollection<Order> GetAllBuyOrders(ICollection<Exchange> exchanges);
+		Dictionary<ExchangeAvailableFundWrapper, IOrderedEnumerable<Order>> GetAllBuyOrders(ICollection<Exchange> exchanges);
 
 		/// <summary>
 		/// Gets all sell orders from all exchanges.
 		/// </summary>
 		/// <param name="exchanges"></param>
 		/// <returns></returns>
-		ICollection<Order> GetAllSellOrders(ICollection<Exchange> exchanges);
+		Dictionary<ExchangeAvailableFundWrapper, IOrderedEnumerable<Order>> GetAllSellOrders(ICollection<Exchange> exchanges);
 	}
 }

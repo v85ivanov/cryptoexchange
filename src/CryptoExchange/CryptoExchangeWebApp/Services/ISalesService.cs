@@ -1,4 +1,4 @@
-﻿using CryptoExchange.Common.Models;
+﻿using CryptoExchange.Common.Dtos;
 
 namespace CryptoExchange.WebApp.Services;
 
@@ -7,7 +7,7 @@ namespace CryptoExchange.WebApp.Services;
 /// </summary>
 public interface ISalesService
 {
-	ICollection<Order> Buy(int numberOfBtc);
+	ICollection<OrderDto> Buy(int numberOfBtc);
 
-	ICollection<Order> Sell(int numberOfBtc);
+	ICollection<OrderDto> Sell(int numberOfBtc);
 }

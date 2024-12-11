@@ -1,5 +1,5 @@
 ﻿using CommandLine;
-using CryptoExchange.Common.Models;
+using CryptoExchange.Common.Dtos;
 using CryptoExchange.Common.Services;
 using CryptoExchange.ConsoleApp;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,18 +14,18 @@ services.AddLogging(builder => builder.AddConsole());
 services.AddCommonOrderServices();
 var serviceProvider = services.BuildServiceProvider();
 
-var orders = new List<Order>();
+var orders = new List<OrderDto>();
 Parser.Default.ParseArguments<Arguments>(args)
 	.WithParsed(a =>
 	{
-		orders = (TradeBtc(a.Action, a.Source, a.Btc) ?? Array.Empty<Order>()).ToList();
+		orders = (TradeBtc(a.Action, a.Source, a.Btc) ?? Array.Empty<OrderDto>()).ToList();
 	});
 LogToConsole(orders);
 Console.ReadLine();
 return;
 
 
-IEnumerable<Order>? TradeBtc(string action, string inputDirectory, int numberOfBtc)
+IEnumerable<OrderDto>? TradeBtc(string action, string inputDirectory, int numberOfBtc)
 {
 	var exchangeService = serviceProvider.GetService<IExchangeService>();
 	var exchanges = exchangeService?.GetDataFromFiles(inputDirectory);
@@ -41,7 +41,7 @@ IEnumerable<Order>? TradeBtc(string action, string inputDirectory, int numberOfB
 		: null;
 }
 
-void LogToConsole(List<Order> ordersToLog)
+void LogToConsole(List<OrderDto> ordersToLog)
 {
 	using var scope = serviceProvider.CreateScope();
 	var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();

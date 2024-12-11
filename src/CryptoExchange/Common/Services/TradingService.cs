@@ -1,4 +1,5 @@
-﻿using CryptoExchange.Common.Models;
+﻿using CryptoExchange.Common.Dtos;
+using CryptoExchange.Common.Models;
 using Microsoft.Extensions.Logging;
 
 namespace CryptoExchange.Common.Services
@@ -11,44 +12,61 @@ namespace CryptoExchange.Common.Services
 	internal class TradingService(IOrderService orderService, ILogger<TradingService> logger)
 		: ITradingService
 	{
-		public ICollection<Order>Buy(ICollection<Exchange> exchangeData, int numberOfBtc)
+		public ICollection<OrderDto> Buy(ICollection<Exchange> exchangeData, int numberOfBtc)
 		{
 			if (numberOfBtc == 0)
 			{
-				return new List<Order>();
+				return new List<OrderDto>();
 			}
 			logger.LogInformation("Buying {NumberOfBtc} BTC", numberOfBtc);
-			var sortedOrders = orderService.GetAllSellOrders(exchangeData).OrderBy(x => x.Price);
+			var sortedOrders = orderService.GetAllSellOrders(exchangeData);
+
 			return GetRequiredOrders(sortedOrders, numberOfBtc);
 		}
 
-		public ICollection<Order> Sell(ICollection<Exchange> exchangeData, int numberOfBtc)
+		public ICollection<OrderDto> Sell(ICollection<Exchange> exchangeData, int numberOfBtc)
 		{
 			if (numberOfBtc == 0)
 			{
-				return new List<Order>();
+				return new List<OrderDto>();
 			}
 
 			logger.LogInformation("Selling {NumberOfBtc} BTC", numberOfBtc);
-			var sortedOrders = orderService.GetAllBuyOrders(exchangeData).OrderByDescending(x => x.Price);
+			var sortedOrders = orderService.GetAllBuyOrders(exchangeData);
 			return GetRequiredOrders(sortedOrders, numberOfBtc);
 
 		}
 
-		private IList<Order> GetRequiredOrders(IOrderedEnumerable<Order> sortedOrders, int numberOfBtc)
+		private IList<OrderDto> GetRequiredOrders(Dictionary<ExchangeAvailableFundWrapper, IOrderedEnumerable<Order>> sortedOrders, int numberOfBtc)
 		{
-			var result = new List<Order>();
+			var result = new List<OrderDto>();
 			var currentAmount = decimal.Zero;
-			foreach (var order in sortedOrders)
+			var keys = sortedOrders.Keys.OrderByDescending(x => x.AvailableCrypto);
+			foreach (var key in keys)
 			{
-				result.Add(order);
-				currentAmount += order.Amount;
+				var available = key.AvailableCrypto;
+				var orders = sortedOrders[key];
+				foreach (var order in orders)
+				{
+					result.Add(new OrderDto
+					{
+						ExchangeId = key.ExchangeId,
+						Id = order.Id,
+						Amount = order.Amount,
+						Price = order.Price
+					});
+					currentAmount += order.Amount;
+					available -= currentAmount;
+					if (currentAmount >= numberOfBtc || available <= decimal.Zero)
+					{
+						break;
+					}
+				}
 				if (currentAmount >= numberOfBtc)
 				{
 					break;
 				}
 			}
-
 			return result;
 		}
 	}

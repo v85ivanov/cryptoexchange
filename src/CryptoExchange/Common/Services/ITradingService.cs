@@ -1,4 +1,5 @@
-﻿using CryptoExchange.Common.Models;
+﻿using CryptoExchange.Common.Dtos;
+using CryptoExchange.Common.Models;
 
 namespace CryptoExchange.Common.Services
 {
@@ -13,7 +14,7 @@ namespace CryptoExchange.Common.Services
 		/// <param name="exchangeData"></param>
 		/// <param name="numberOfBtc"></param>
 		/// <returns></returns>
-		ICollection<Order> Buy(ICollection<Exchange> exchangeData, int numberOfBtc);
+		ICollection<OrderDto> Buy(ICollection<Exchange> exchangeData, int numberOfBtc);
 
 		/// <summary>
 		/// Sells BTC.
@@ -21,6 +22,6 @@ namespace CryptoExchange.Common.Services
 		/// <param name="exchangeData"></param>
 		/// <param name="numberOfBtc"></param>
 		/// <returns></returns>
-		ICollection<Order> Sell(ICollection<Exchange> exchangeData, int numberOfBtc);
+		ICollection<OrderDto> Sell(ICollection<Exchange> exchangeData, int numberOfBtc);
 	}
 }

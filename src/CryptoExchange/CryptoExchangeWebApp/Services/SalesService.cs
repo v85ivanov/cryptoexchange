@@ -1,4 +1,4 @@
-﻿using CryptoExchange.Common.Models;
+﻿using CryptoExchange.Common.Dtos;
 using CryptoExchange.Common.Services;
 using CryptoExchange.WebApp.Configuration;
 using Microsoft.Extensions.Options;
@@ -14,7 +14,7 @@ namespace CryptoExchange.WebApp.Services
 		: ISalesService
 	{
 		
-		public ICollection<Order> Buy(int numberOfBtc)
+		public ICollection<OrderDto> Buy(int numberOfBtc)
 		{
 			logger.LogInformation("Buying {NumberOfBtc} BTC", numberOfBtc);
 
@@ -23,7 +23,7 @@ namespace CryptoExchange.WebApp.Services
 			return result;
 		}
 
-		public ICollection<Order> Sell(int numberOfBtc)
+		public ICollection<OrderDto> Sell(int numberOfBtc)
 		{
 			logger.LogInformation("Selling {NumberOfBtc} BTC", numberOfBtc);
 

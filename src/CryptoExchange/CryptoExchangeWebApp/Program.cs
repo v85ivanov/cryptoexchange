@@ -1,4 +1,4 @@
-using CryptoExchange.Common.Models;
+using CryptoExchange.Common.Dtos;
 using CryptoExchange.WebApp.Configuration;
 using CryptoExchange.WebApp.Extensions;
 using CryptoExchange.WebApp.Services;
@@ -24,7 +24,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapGet("/trading/buy/{numberOfBtc}",
-		Results<Ok<ICollection<Order>>, NoContent> (ISalesService salesService, int numberOfBtc) =>
+		Results<Ok<ICollection<OrderDto>>, NoContent> (ISalesService salesService, int numberOfBtc) =>
 			salesService.Buy(numberOfBtc) is { } orders
 				? TypedResults.Ok(orders)
 				: TypedResults.NoContent()
@@ -37,7 +37,7 @@ app.MapGet("/trading/buy/{numberOfBtc}",
 	 });
 
 app.MapGet("/trading/sell/{numberOfBtc}",
-		Results<Ok<ICollection<Order>>, NoContent> (ISalesService salesService, int numberOfBtc) =>
+		Results<Ok<ICollection<OrderDto>>, NoContent> (ISalesService salesService, int numberOfBtc) =>
 			salesService.Sell(numberOfBtc) is { } orders
 				? TypedResults.Ok(orders)
 				: TypedResults.NoContent()
