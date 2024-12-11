@@ -7,7 +7,7 @@ namespace Microsoft.Extensions.DependencyInjection;
 
 public static class ServiceCollectionExtensions
 {
-	public static IServiceCollection AddCommonServices(this IServiceCollection services)
+	public static IServiceCollection AddCommonOrderServices(this IServiceCollection services)
 	{
 
 		//mappers

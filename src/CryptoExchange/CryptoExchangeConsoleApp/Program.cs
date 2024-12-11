@@ -36,7 +36,7 @@ public class Program
 		//Configure logger
 		services.AddLogging(builder => builder.ClearProviders().AddConsole());
 		//Add services
-		services.AddCommonServices();
+		services.AddCommonOrderServices();
 	}
 
 	/// <summary>

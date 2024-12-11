@@ -1,3 +1,6 @@
+using CryptoExchange.WebApp.Configuration;
+using CryptoExchange.WebApp.Extensions;
+
 namespace CryptoExchange.WebApp
 {
 	public class Program
@@ -8,7 +11,8 @@ namespace CryptoExchange.WebApp
 
 			// Add services to the container.
 			builder.Services.AddRazorPages();
-			builder.Services.AddCommonServices();
+			builder.Services.AddCommonOrderServices();
+			builder.Services.AddOptionsFromSection<Settings>("Settings");
 
 			var app = builder.Build();
 
