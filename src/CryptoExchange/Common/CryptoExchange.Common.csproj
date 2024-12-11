@@ -13,6 +13,6 @@
 
 	<ItemGroup>
 		<InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
-		<InternalsVisibleTo Include="Common.Tests" />
+		<InternalsVisibleTo Include="CryptoExchange.Common.Tests" />
 	</ItemGroup>
 </Project>
