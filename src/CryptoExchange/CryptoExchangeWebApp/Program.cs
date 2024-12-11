@@ -1,40 +1,52 @@
+using CryptoExchange.Common.Models;
 using CryptoExchange.WebApp.Configuration;
 using CryptoExchange.WebApp.Extensions;
+using CryptoExchange.WebApp.Services;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.OpenApi.Models;
 
-namespace CryptoExchange.WebApp
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddCommonOrderServices();
+builder.Services.AddOptionsFromSection<Settings>("Settings");
+builder.Services.AddSingleton<ISalesService, SalesService>();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
 {
-	public class Program
-	{
-		public static void Main(string[] args)
-		{
-			var builder = WebApplication.CreateBuilder(args);
-
-			// Add services to the container.
-			builder.Services.AddRazorPages();
-			builder.Services.AddCommonOrderServices();
-			builder.Services.AddOptionsFromSection<Settings>("Settings");
-
-			var app = builder.Build();
-
-			// Configure the HTTP request pipeline.
-			if (!app.Environment.IsDevelopment())
-			{
-				app.UseExceptionHandler("/Error");
-			}
-			app.UseStaticFiles();
-
-			app.UseRouting();
-
-			app.MapControllerRoute(
-				name: "default",
-				pattern: "{controller=Trading}/{action=Buy}/{numberOfBtc?}");
-
-
-			app.UseAuthorization();
-
-			app.MapRazorPages();
-
-			app.Run();
-		}
-	}
+	app.UseSwagger();
+	app.UseSwaggerUI();
 }
+
+app.MapGet("/trading/buy/{numberOfBtc}",
+		Results<Ok<ICollection<Order>>, NoContent> (ISalesService salesService, int numberOfBtc) =>
+			salesService.Buy(numberOfBtc) is { } orders
+				? TypedResults.Ok(orders)
+				: TypedResults.NoContent()
+	)
+	.WithName("BuyBtc")
+	.WithOpenApi(x => new OpenApiOperation(x)
+	 {
+		 Summary = "Buys Btc",
+		 Description = "Returns collection of orders.",
+	 });
+
+app.MapGet("/trading/sell/{numberOfBtc}",
+		Results<Ok<ICollection<Order>>, NoContent> (ISalesService salesService, int numberOfBtc) =>
+			salesService.Sell(numberOfBtc) is { } orders
+				? TypedResults.Ok(orders)
+				: TypedResults.NoContent()
+	)
+	.WithName("SellBtc")
+	.WithOpenApi(x => new OpenApiOperation(x)
+	{
+		Summary = "Sells Btc",
+		Description = "Returns collection of orders.",
+	});
+
+app.Run();
