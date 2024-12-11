@@ -9,6 +9,6 @@
 
 		public AvailableFund AvailableFunds { get; set; }
 
-		public OrderBook OrderBook { get; set; }
+		public OrderBook OrderBook { get; set; } = null!;
 	}
 }

@@ -31,7 +31,7 @@ namespace CryptoExchangeWebApp.Controllers
 			var settingsSection = config.GetSection("Settings");
 			var settings = settingsSection.Get<Settings>();
 
-			var exchangeData =  exchangeService.GetDataFromFiles(settings.Source);
+			var exchangeData =  exchangeService.GetDataFromFiles(settings?.Source);
 			var result = tradingService.Buy(exchangeData, numberOfBtc);
 
 			return Json(result);

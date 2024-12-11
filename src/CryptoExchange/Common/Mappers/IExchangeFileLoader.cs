@@ -12,6 +12,6 @@ namespace Common.Mappers
 		/// </summary>
 		/// <param name="file"></param>
 		/// <returns></returns>
-		Exchange? GetData(FileInfo file);
+		Exchange GetData(FileInfo file);
 	}
 }

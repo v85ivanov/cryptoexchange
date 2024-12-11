@@ -19,10 +19,14 @@ namespace Common.Services
 	{
 		public ICollection<Exchange> GetDataFromFiles(string directoryPath)
 		{
-			logger.LogInformation("Getting exchange data");
+			if (!string.IsNullOrEmpty(directoryPath))
+			{
+				logger.LogInformation("Getting exchange data");
 
-			var files = fileProvider.GetFiles(directoryPath);
-			return files.Select(exchangeFileLoader.GetData).OfType<Exchange>().ToList();
+				var files = fileProvider.GetFiles(directoryPath);
+				return files.Select(exchangeFileLoader.GetData).OfType<Exchange>().ToList();
+			}
+			return new List<Exchange>();
 		}
 	}
 }

@@ -5,8 +5,8 @@
 	/// </summary>
 	public class OrderBook
 	{
-		public ICollection<OrderWrapper> Bids { get; set; }
+		public required ICollection<OrderWrapper> Bids { get; set; }
 
-		public ICollection<OrderWrapper> Asks { get; set; }
+		public required ICollection<OrderWrapper> Asks { get; set; }
 	}
 }

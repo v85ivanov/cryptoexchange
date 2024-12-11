@@ -10,7 +10,7 @@ namespace Common.Mappers
 	internal class ExchangeFileLoader(ILogger<ExchangeFileLoader> logger) : IExchangeFileLoader
 	{
 
-		public Exchange? GetData(FileInfo file)
+		public Exchange GetData(FileInfo file)
 		{
 			try
 			{

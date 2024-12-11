@@ -21,7 +21,7 @@ public class Program
 		Parser.Default.ParseArguments<Arguments>(args)
 			.WithParsed(a =>
 			{
-				orders = BuyBtc(a.Source, 1).ToList();
+				orders = (BuyBtc(a.Source, 1) ?? Array.Empty<Order>()).ToList();
 			});
 		LogToConsole(orders);
 		Console.ReadLine();
@@ -45,13 +45,18 @@ public class Program
 	/// <param name="inputDirectory"></param>
 	/// <param name="numberOfBtc"></param>
 	/// <returns></returns>
-	private static IEnumerable<Order> BuyBtc(string inputDirectory, int numberOfBtc)
+	private static IEnumerable<Order>? BuyBtc(string inputDirectory, int numberOfBtc)
 	{
-		var exchangeService = _serviceProvider.GetService<IExchangeService>();
-		var exchanges = exchangeService?.GetDataFromFiles(inputDirectory);
+		if (_serviceProvider != null)
+		{
+			var exchangeService = _serviceProvider.GetService<IExchangeService>();
+			var exchanges = exchangeService?.GetDataFromFiles(inputDirectory);
 
-		var tradingService = _serviceProvider.GetService<ITradingService>();
-		return tradingService?.Buy(exchanges, numberOfBtc);
+			var tradingService = _serviceProvider.GetService<ITradingService>();
+			return tradingService?.Buy(exchanges, numberOfBtc);
+		}
+
+		return null;
 	}
 
 	/// <summary>
@@ -60,11 +65,14 @@ public class Program
 	/// <param name="orders"></param>
 	private static void LogToConsole(List<Order> orders)
 	{
-		using var scope = _serviceProvider.CreateScope();
-		var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-		foreach (var order in orders)
+		if (_serviceProvider != null)
 		{
-			logger.LogInformation(message: Serialize(order));
+			using var scope = _serviceProvider.CreateScope();
+			var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+			foreach (var order in orders)
+			{
+				logger.LogInformation(message: Serialize(order));
+			}
 		}
 	}
 

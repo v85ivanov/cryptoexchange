@@ -5,6 +5,6 @@
 	/// </summary>
 	public class Settings
 	{
-		public string Source { get; set; }
+		public required string Source { get; set; }
 	}
 }

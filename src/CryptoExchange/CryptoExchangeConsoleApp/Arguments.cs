@@ -8,6 +8,6 @@ namespace CryptoExchangeConsoleApp;
 internal class Arguments
 {
 	[Option('s', "source", Required = true, HelpText = "Set source directory.")]
-	public string Source { get; set; }
+	public required string Source { get; set; }
 
 }
