@@ -12,7 +12,7 @@ namespace CryptoExchange.Common.Services
 			return exchanges.ToDictionary(exchange => new ExchangeAvailableFundWrapper
 				{
 					ExchangeId = exchange.Id,
-					AvailableCrypto = exchange.AvailableFunds.Crypto
+					AvailableCrypto = exchange.AvailableFunds?.Crypto ?? decimal.Zero
 				},
 				exchange => exchange.OrderBook.Bids.Select(x => x.Order).OrderByDescending(x => x.Price));
 		}
@@ -22,8 +22,8 @@ namespace CryptoExchange.Common.Services
 			return exchanges.ToDictionary(exchange => new ExchangeAvailableFundWrapper
 				{
 					ExchangeId = exchange.Id,
-					AvailableCrypto = exchange.AvailableFunds.Crypto
-				},
+					AvailableCrypto = exchange.AvailableFunds?.Crypto ?? decimal.Zero
+			},
 				exchange => exchange.OrderBook.Asks.Select(x => x.Order).OrderBy(x => x.Price));
 		}
 	}

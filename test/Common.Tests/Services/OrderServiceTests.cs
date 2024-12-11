@@ -53,7 +53,11 @@ namespace CryptoExchange.Common.Tests.Services
 		{
 			var result = _systemUnderTest.GetAllBuyOrders(_exchanges);
 			result.Should().NotBeEmpty();
-			result.Should().HaveCount(4);
+			result.Should().HaveCount(2);
+			foreach (var key in result.Keys)
+			{
+				result[key].Should().HaveCount(2);
+			}
 		}
 
 		[Test]
@@ -61,7 +65,11 @@ namespace CryptoExchange.Common.Tests.Services
 		{
 			var result = _systemUnderTest.GetAllSellOrders(_exchanges);
 			result.Should().NotBeEmpty();
-			result.Should().HaveCount(6);
+			result.Should().HaveCount(2);
+			foreach (var key in result.Keys)
+			{
+				result[key].Should().HaveCount(3);
+			}
 		}
 
 	}

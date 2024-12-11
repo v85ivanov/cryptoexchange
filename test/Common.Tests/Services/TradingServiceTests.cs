@@ -25,6 +25,7 @@ namespace CryptoExchange.Common.Tests.Services
 		public void Buy_ExchangeDataProvided_ReturnsListOfOrders()
 		{
 			var data = new List<Exchange>();
+			var dictionary = new Dictionary<ExchangeAvailableFundWrapper, IOrderedEnumerable<Order>>();
 			var orderList = new List<Order>
 			{
 				new ()
@@ -47,8 +48,14 @@ namespace CryptoExchange.Common.Tests.Services
 					Amount = 0.5m,
 					Price = 50001
 				}
-			};
-			_orderService.GetAllSellOrders(data).Returns(orderList);
+			}.OrderBy(x => x.Price);
+			dictionary.Add(new ExchangeAvailableFundWrapper
+			{
+				AvailableCrypto = 1,
+				ExchangeId = "ExchangeId"
+			}, orderList);
+			
+			_orderService.GetAllSellOrders(data).Returns(dictionary);
 
 			var result = _systemUnderTest.Buy(data, 1).ToList();
 			result.Should().NotBeEmpty();
@@ -70,6 +77,7 @@ namespace CryptoExchange.Common.Tests.Services
 		public void Sell_ExchangeDataProvided_ReturnsListOfOrders()
 		{
 			var data = new List<Exchange>();
+			var dictionary = new Dictionary<ExchangeAvailableFundWrapper, IOrderedEnumerable<Order>>();
 			var orderList = new List<Order>
 			{
 				new ()
@@ -92,8 +100,12 @@ namespace CryptoExchange.Common.Tests.Services
 					Amount = 0.5m,
 					Price = 50001
 				}
-			};
-			_orderService.GetAllBuyOrders(data).Returns(orderList);
+			}.OrderByDescending(x =>x.Price);
+			dictionary.Add(new ExchangeAvailableFundWrapper()
+			{
+				AvailableCrypto = 1
+			}, orderList);
+			_orderService.GetAllBuyOrders(data).Returns(dictionary);
 
 			var result = _systemUnderTest.Sell(data, 1).ToList();
 			result.Should().NotBeEmpty();

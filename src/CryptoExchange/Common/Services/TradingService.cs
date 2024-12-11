@@ -57,7 +57,7 @@ namespace CryptoExchange.Common.Services
 					});
 					currentAmount += order.Amount;
 					available -= currentAmount;
-					if (currentAmount >= numberOfBtc || available <= decimal.Zero)
+					if (currentAmount >= numberOfBtc || available < decimal.Zero)
 					{
 						break;
 					}
