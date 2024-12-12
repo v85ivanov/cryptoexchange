@@ -11,7 +11,7 @@ public static class ServiceCollectionExtensions
 	{
 
 		//mappers
-		services.AddTransient<IExchangeFileLoader, ExchangeFileLoader>();
+		services.AddTransient<IExchangeFileMapper, ExchangeFileMapper>();
 
 		//providers
 		services.AddTransient<IFileProvider, PhysicalFileProvider>();

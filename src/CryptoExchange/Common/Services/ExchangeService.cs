@@ -13,7 +13,7 @@ namespace CryptoExchange.Common.Services
 	/// <param name="logger"></param>
 	internal class ExchangeService(
 		IFileProvider fileProvider,
-		IExchangeFileLoader exchangeFileLoader,
+		IExchangeFileMapper exchangeFileLoader,
 		ILogger<ExchangeService> logger)
 		: IExchangeService
 	{

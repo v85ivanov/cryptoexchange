@@ -13,14 +13,14 @@ namespace CryptoExchange.Common.Tests.Services
 	{
 		private ExchangeService _systemUnderTest;
 		private IFileProvider _fileProvider;
-		private IExchangeFileLoader _exchangeFileLoader;
+		private IExchangeFileMapper _exchangeFileLoader;
 
 		[SetUp]
 		public void Setup()
 		{
 			var logger = Substitute.For<ILogger<ExchangeService>>();
 			_fileProvider = Substitute.For<IFileProvider>();
-			_exchangeFileLoader = Substitute.For<IExchangeFileLoader>();
+			_exchangeFileLoader = Substitute.For<IExchangeFileMapper>();
 
 			_systemUnderTest = Substitute.ForPartsOf<ExchangeService>(_fileProvider, _exchangeFileLoader, logger);
 		}

@@ -5,7 +5,7 @@ namespace CryptoExchange.Common.Mappers
 	/// <summary>
 	/// Represents exchange file mapper.
 	/// </summary>
-	public interface IExchangeFileLoader
+	public interface IExchangeFileMapper
 	{
 		/// <summary>
 		/// Maps file info to exchange model.

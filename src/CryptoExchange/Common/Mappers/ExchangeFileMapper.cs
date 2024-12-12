@@ -5,9 +5,9 @@ using Microsoft.Extensions.Logging;
 namespace CryptoExchange.Common.Mappers
 {
 	/// <summary>
-	/// Implementation of <see cref="IExchangeFileLoader"/>.
+	/// Implementation of <see cref="IExchangeFileMapper"/>.
 	/// </summary>
-	internal class ExchangeFileLoader(ILogger<ExchangeFileLoader> logger) : IExchangeFileLoader
+	internal class ExchangeFileMapper(ILogger<ExchangeFileMapper> logger) : IExchangeFileMapper
 	{
 
 		public Exchange GetData(FileInfo file)
