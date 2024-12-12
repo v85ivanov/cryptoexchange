@@ -9,7 +9,7 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddCommonOrderServices();
+builder.Services.AddTradingServices();
 builder.Services.AddOptionsFromSection<Settings>("Settings");
 builder.Services.AddSingleton<ISalesService, SalesService>();
 builder.Services.AddEndpointsApiExplorer();

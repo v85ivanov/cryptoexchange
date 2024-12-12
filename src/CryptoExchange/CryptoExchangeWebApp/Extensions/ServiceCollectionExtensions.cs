@@ -13,9 +13,6 @@ public static class ServiceCollectionExtensions
 			var optionsBuilder = services.AddOptions<TOptions>();
 			if (!withoutBinding)
 				optionsBuilder.BindConfiguration(sectionName);
-
-			//TODO: Migration Do we need minivalidation?
-			//optionsBuilder.ValidateMiniValidation(sectionName);
 			optionsBuilder.ValidateOnStart();
 		}
 

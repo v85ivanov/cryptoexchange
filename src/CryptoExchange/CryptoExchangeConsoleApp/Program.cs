@@ -11,7 +11,7 @@ IServiceCollection services = new ServiceCollection();
 //Configure logger
 services.AddLogging(builder => builder.AddConsole());
 //Add services
-services.AddCommonOrderServices();
+services.AddTradingServices();
 var serviceProvider = services.BuildServiceProvider();
 
 var orders = new List<OrderDto>();
