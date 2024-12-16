@@ -58,7 +58,7 @@ This is a small web application based on Minimal APIs and hosted in docker. The 
  3. Services
 	 1. ISalesService - An orchestrator service for the IExchangeService and ITradingService, it generates the output result
 
-In order to start the application one should use "docker-compose up".
+In order to start the application one should use "docker-compose up" under "\src\CryptoExchange" folder.
 The user can then go to Swagger UI (/swagger) where two get requests are listed. One can choose between buying or selling BTC. 
 To try out a request one should do the following: 
 
