@@ -8,17 +8,17 @@ ENV ASPNETCORE_URLS=http://*:5000
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["CryptoExchangeWebApp/CryptoExchangeWebApp.csproj", "CryptoExchangeWebApp/"]
-RUN dotnet restore "./CryptoExchangeWebApp/./CryptoExchangeWebApp.csproj"
+COPY ["CryptoExchangeWebApp/CryptoExchange.WebApp.csproj", "CryptoExchangeWebApp/"]
+RUN dotnet restore "./CryptoExchangeWebApp/./CryptoExchange.WebApp.csproj"
 COPY . .
 WORKDIR "/src/CryptoExchangeWebApp"
-RUN dotnet build "./CryptoExchangeWebApp.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./CryptoExchange.WebApp.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./CryptoExchangeWebApp.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./CryptoExchange.WebApp.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "CryptoExchangeWebApp.dll"]
+ENTRYPOINT ["dotnet", "CryptoExchange.WebApp.dll"]

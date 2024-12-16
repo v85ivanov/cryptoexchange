@@ -14,6 +14,7 @@ builder.Services.AddOptionsFromSection<Settings>("Settings");
 builder.Services.AddSingleton<ISalesService, SalesService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -48,5 +49,5 @@ app.MapGet("/trading/sell/{numberOfBtc}",
 		Summary = "Sells Btc",
 		Description = "Returns collection of orders.",
 	});
-
+app.MapRazorPages();
 app.Run();
